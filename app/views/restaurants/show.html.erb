@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<% content_for(:name) do %>
+  Restaurants - <%= @restaurant.name %>
+<% end %>
+
+<restaurant>
+  <h1>
+    <%= @restaurant.name %>
+    <small>
+      <%= link_to edit_restaurant_path(@restaurant) do %><i class="fa fa-pencil"></i><% end %>
+
+      <%= link_to restaurant_path(@restaurant), method: :delete, data: { confirm: 'Are you sure?' } do %>
+        <i class="fa fa-trash-o"></i>
+      <% end %>
+    </small>
+  </h1>
+
+  <hr>
+  <h4>Address: <%= @restaurant.address %> </h4>
+  <h4>Category: <%= @restaurant.category %> </h4>
+  <h4>Phone_Number: <%= @restaurant.phone_number %> </h4>
+  <div>
+   <h4>Reviews:</h4>
+   <small>
+   <%= link_to new_restaurant_review_path(@restaurant) do %><i class="fa fa-pencil"></i><% end %>
+  </small>
+        <ul>
+    <% @reviews.each do |review| %>
+
+    <li> <%= review.content %> || <%= review.rating %></li>
+    <%end  %>
+    </ul>
+  </div>
+
+</restaurant>
